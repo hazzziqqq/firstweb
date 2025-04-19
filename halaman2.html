@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kata Semangat</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            animation: fadeInZoom 1s ease forwards;
+        }
+
+        @keyframes fadeInZoom {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .nama {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .quote {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 2rem;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .buttons button {
+            padding: 0.6rem 1.4rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 10px;
+            background-color: #64b5f6;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buttons button:hover {
+            background-color: #42a5f5;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="nama" id="namaUser">...</div>
+        <div class="quote" id="quoteText">“...”</div>
+        <div class="buttons">
+            <button onclick="goBack()">Kembali</button>
+            <button onclick="generateQuote()">Baca Lagi</button>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const nama = params.get('nama') || 'Sahabat';
+        document.getElementById('namaUser').textContent = `Untukmu, ${nama}`;
+
+        const quotes = [
+            "“Jangan cintai orang yang tidak mencintai Allah, kalau Allah saja ia tinggalkan apalagi kamu.”",
+            "“Solat 5 waktu khususnya di awal waktu adalah kunci utama untuk mencapai kejayaan dalam hidup.”",
+            "“Kalau ada niat nak mulakan perubahan hidup, mulakan dengan baiki solat dahulu.”",
+            "“Jika kita tidak berasa bersalah atas kemaksiatan dilakukan itu tanda hati kita hitam.”",
+            "“Hati yang tenang datang daripada zikir dan solat.”",
+            "“Jadikan Al-Quran sebagai teman hidup, bukan sekadar hiasan di rak.”",
+            "“Berbakti kepada ibu bapa adalah salah satu kunci diluaskan rezeki seseorang.”",
+    ];
+
+    function generateQuote() {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        document.getElementById('quoteText').textContent = quotes[randomIndex];
+    }
+
+    function goBack() {
+        window.location.href = "index.html";
+    }
+
+      // Auto load satu kata semangat bila buka
+      generateQuote();
+    </script>
+    
+</body>
+</html>
